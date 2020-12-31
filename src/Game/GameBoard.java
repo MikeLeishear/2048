@@ -27,7 +27,7 @@ public class GameBoard {
     }
     /* initializes a 1-2 blocks to have values other than 0/null */
     public void initializeRandomBlocks(){
-        int [] startValues = {2,2,2,2,2,4,4,4,4,8};
+        int [] startValues = {2,2,2,2,2,2,4,4,4,4,8};
 
         //randomly choose 2 blocks to have start values
         Random generator = new Random();
