@@ -2,7 +2,8 @@ package Game;
 import java.util.Random;
 
 public class GameBoard {
-    Block[][] board = new Block[4][4];
+    int [] startValues = {2,2,2,2,2,2,4,4,4,4,8};
+    Block [][] board = new Block[4][4];
     public GameBoard (){
 
     }
@@ -27,7 +28,6 @@ public class GameBoard {
     }
     /* initializes a 1-2 blocks to have values other than 0/null */
     public void initializeRandomBlocks(){
-        int [] startValues = {2,2,2,2,2,2,4,4,4,4,8};
 
         //randomly choose 2 blocks to have start values
         Random generator = new Random();
@@ -46,10 +46,30 @@ public class GameBoard {
         board[innerIndex2][outerIndex2].value = startValue2;
     }
 
+    /* used to spawn a random block when a user combines blocks*/
+    public void spawnRandomBlock(){
+        boolean validBlock = false;
+        while(!validBlock){
+            Random numGen = new Random();
+            int index = numGen.nextInt(4);
+            int index2 = numGen.nextInt(4);
+            if(board[index][index2].value == 0){
+                int randomValue = numGen.nextInt(startValues.length);
+                board[index][index2].value = startValues[randomValue];
+                validBlock = true;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
         GameBoard gameBoard = new GameBoard();
 
         gameBoard.createBoard();
+        gameBoard.printBoard();
+        System.out.println();
+        
+
         gameBoard.printBoard();
     }
 }
